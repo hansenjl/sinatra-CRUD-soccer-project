@@ -13,12 +13,18 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/signup' do
-    erb :signup
+    if is_logged_in?
+      @team = current_user
+      redirect "/teams/#{@team.id}"
+    else
+      erb :signup
+    end
   end
 
   post '/signup' do
-    @team = Team.new(:name => params[name], :password => params[password])
-    if @team.save && !params[name].empty?
+    @team = Team.new(:name => params[:name], :password => params[:password])
+    if @team.save && !params[:name].empty?
+      session[:user_id] = @team.id
       redirect "/teams/#{@team.id}"
     else
       redirect '/failure'
@@ -31,10 +37,21 @@ class ApplicationController < Sinatra::Base
 
 
   get '/login' do
-    erb :login
+    if is_logged_in?
+      @team = current_user
+      redirect "/teams/#{@team.id}"
+    else
+      erb :login
+    end
   end
 
   post '/login' do
+    @team = Team.find_by(name: params[:name])
+
+    if @team && @team.authenticate(params[:password])
+      session[:user_id] = @team.id
+    end
+    redirect "/teams/#{@team.id}"
   end
 
   get '/logout' do
