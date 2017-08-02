@@ -1,21 +1,37 @@
 class PlayerController < ApplicationController
 
   get '/player/new' do
-    erb :'player/new'
+    if is_logged_in?
+      erb :'player/new'
+    else
+      redirect "/"
+    end
   end
 
   get "/player/:id" do
-    @player = Player.find(params[:id])
-    erb :'player/show'
+    if is_logged_in?
+      @player = Player.find(params[:id])
+      erb :'player/show'
+    else
+      redirect "/"
+    end
   end
 
   get "/player/:id/edit" do
-    @player = Player.find(params[:id])
-    erb :'player/edit'
+    if is_logged_in?
+      @player = Player.find(params[:id])
+      erb :'player/edit'
+    else
+      redirect "/"
+    end
   end
 
   patch "/player/:id" do
-    @player = Player.find(params[:id])
-    redirect "/player/#{@player.id}"
+    if is_logged_in?
+      @player = Player.find(params[:id])
+      redirect "/player/#{@player.id}"
+    else
+      redirect "/"
+    end
   end
 end
