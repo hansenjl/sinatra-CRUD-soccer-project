@@ -5,4 +5,8 @@
   <% end %>
 </ul>
 
+<%if @team.formation.nil?%>
 <a class="button" href="/formation/new">Create Formation</a>
+<%else%>
+<a class="button" href="/formation/<%=@team.formation.id%>">View Formation</a>
+<%end%>
