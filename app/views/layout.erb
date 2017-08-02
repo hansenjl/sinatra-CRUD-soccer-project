@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Soccer Team Creator</title>
+</head>
+<body>
+  <% if @team.nil?%>
+  <a href="/login">Log In</a>
+  <% else%>
+  <a href="/logout">Log Out</a>
+  <% end %>
+
+<%= yield %>
+
+</body>
+</html>
