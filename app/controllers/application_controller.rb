@@ -50,8 +50,11 @@ class ApplicationController < Sinatra::Base
 
     if @team && @team.authenticate(params[:password])
       session[:user_id] = @team.id
+      redirect "/teams/#{@team.id}"
+    else
+      redirect '/failure'
     end
-    redirect "/teams/#{@team.id}"
+
   end
 
   get '/logout' do
@@ -59,7 +62,7 @@ class ApplicationController < Sinatra::Base
     redirect '/'
   end
 
-  get 'teams/:id' do
+  get '/teams/:id' do
     @team = Team.find(params[:id])
     erb :'team/show'
   end
