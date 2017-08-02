@@ -1,1 +1,8 @@
 <h1><%=@team.name%></h1>
+<ul>
+  <% @team.players.each do |player| %>
+  <li><%= player.name %> #<%= player.number %></li>
+  <% end %>
+</ul>
+
+<a class="button" href="">Create Formation</a>
