@@ -1,4 +1,4 @@
 class Position < ActiveRecord::Base
-  belongs_to :team
+  belongs_to :formation
   has_many :players
 end

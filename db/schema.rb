@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20170802221353) do
     t.string "name"
     t.integer "number"
     t.integer "position_id"
+    t.integer "team_id"
   end
 
   create_table "positions", force: :cascade do |t|

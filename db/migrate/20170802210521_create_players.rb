@@ -4,6 +4,7 @@ class CreatePlayers < ActiveRecord::Migration[5.1]
       t.string :name
       t.integer :number
       t.integer :position_id
+      t.integer :team_id
     end
   end
 end
