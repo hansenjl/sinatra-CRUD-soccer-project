@@ -1,8 +1,8 @@
-<h1>Edit your <%=@formation.name%> formation</h1>
+<h1>Create your <%=@formation.name%> formation</h1>
 <form method="post" action="/formation/<%=@formation.id%>">
 
   <% @formation.positions.each do |position| %>
-  <input type="text" name="positions[]" value="<%= position.player.name %>"> <br>
+  <input type="text" name="positions[]" value="<%= position.name %>"> <br>
   <%end%>
 
 
