@@ -1,3 +1,4 @@
+require 'pry'
 class FormationController < ApplicationController
 
   get '/formation/new' do
@@ -11,9 +12,11 @@ class FormationController < ApplicationController
 
 
   post '/formation' do
+    binding.pry
     @formation = Formation.find_by(:name => params[:formation_name])
     @formation.teams << current_team
     redirect "/formation/#{@formation.id}"
+
   end
 
   get "/formation/:id" do
