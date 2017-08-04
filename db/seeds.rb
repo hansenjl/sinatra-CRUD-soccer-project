@@ -1,5 +1,6 @@
 Position.create(:name => "goalie",:formation_id => 1)
 Position.create(:name => "goalie",:formation_id => 2)
+
 # Position.create(:name => "sweeper",:formation_id => 1)
 # Position.create(:name => "sweeper",:formation_id => 2)
 
