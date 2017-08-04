@@ -15,8 +15,7 @@ class ApplicationController < Sinatra::Base
 
   get '/signup' do
     if is_logged_in?
-      @team = current_team
-      redirect "/teams/#{@team.id}"
+      redirect "/teams/#{@current_team.id}"
     else
       erb :signup
     end
@@ -39,8 +38,7 @@ class ApplicationController < Sinatra::Base
 
   get '/login' do
     if is_logged_in?
-      @team = current_team
-      redirect "/teams/#{@team.id}"
+      redirect "/teams/#{@current_team.id}"
     else
       erb :login
     end
@@ -71,7 +69,7 @@ class ApplicationController < Sinatra::Base
 
   helpers do
     def current_team
-      Team.find(session[:user_id])
+      @current_team ||= Team.find(session[:user_id])
     end
 
     def is_logged_in?

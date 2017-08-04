@@ -22,7 +22,7 @@ class FormationController < ApplicationController
     else
       redirect '/formation/new'
     end
-    @formation.teams << current_team
+    @formation.teams << @current_team
     @formation.save
     redirect "/formation/#{@formation.id}/create"
   end
