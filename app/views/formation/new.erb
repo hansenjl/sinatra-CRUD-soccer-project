@@ -1,0 +1,7 @@
+<h1>Choose your formation</h1>
+<form action="/formation" method="post">
+  <% @formations.each do |formation| %>
+  <input type="radio" name="formation_name "><%= formation.name %> </input> <br>
+  <% end %>
+  <input type="submit" value="submit">
+</form>

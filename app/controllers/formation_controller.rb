@@ -2,10 +2,14 @@ class FormationController < ApplicationController
 
   get '/formation/new' do
     if is_logged_in?
+      @formations = Formation.all
       erb :'formation/new'
     else
       redirect '/'
     end
+  end
+
+  post '/formation' do
   end
 
   get "/formation/:id" do
