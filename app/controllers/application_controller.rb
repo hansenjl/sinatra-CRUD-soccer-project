@@ -1,4 +1,5 @@
 require './config/environment'
+require 'pry'
 class ApplicationController < Sinatra::Base
 
   configure do
@@ -65,6 +66,12 @@ class ApplicationController < Sinatra::Base
   get '/teams/:id' do
     @team = Team.find(params[:id])
     erb :'team/show'
+  end
+
+  get "/delete" do
+    binding.pry
+    Position.all.clear
+
   end
 
   helpers do
