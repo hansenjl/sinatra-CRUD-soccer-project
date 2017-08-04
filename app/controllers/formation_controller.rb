@@ -9,6 +9,7 @@ class FormationController < ApplicationController
     end
   end
 
+
   post '/formation' do
   end
 
