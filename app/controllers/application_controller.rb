@@ -68,11 +68,6 @@ class ApplicationController < Sinatra::Base
     erb :'team/show'
   end
 
-  get "/delete" do
-    binding.pry
-    Position.all.clear
-
-  end
 
   helpers do
     def current_team
