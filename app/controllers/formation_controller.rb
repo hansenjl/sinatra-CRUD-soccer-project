@@ -12,11 +12,9 @@ class FormationController < ApplicationController
 
 
   post '/formation' do
-    binding.pry
     @formation = Formation.find_by(:name => params[:formation_name])
     @formation.teams << current_team
-    redirect "/formation/#{@formation.id}"
-
+    redirect "/formation/#{@formation.id}/edit"
   end
 
   get "/formation/:id" do
