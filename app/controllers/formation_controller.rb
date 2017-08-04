@@ -24,13 +24,22 @@ class FormationController < ApplicationController
     end
     @formation.teams << current_team
     @formation.save
-    redirect "/formation/#{@formation.id}/edit"
+    redirect "/formation/#{@formation.id}/create"
   end
 
   get "/formation/:id" do
     if is_logged_in?
       @formation = Formation.find(params[:id])
       erb :'formation/show'
+    else
+      redirect '/'
+    end
+  end
+
+  get "/formation/:id/create" do
+    if is_logged_in?
+      @formation = Formation.find(params[:id])
+      erb :'formation/create'
     else
       redirect '/'
     end
