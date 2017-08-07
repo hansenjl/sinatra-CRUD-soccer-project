@@ -1,8 +1,13 @@
-<h2><%=@formation.name%> formation</h2>
+<h2><%=@formation.name%> Formation</h2>
 
 
   <% @formation.positions.each do |position| %>
-      <h4><%= position.name%>: <%= position.player.name%> </h4>
+    <% if position.player.nil?%>
+      <h4><%= position.name%>: </h4>
+    <% else %>
+      <h4><%= position.name%>: <%= position.player.name%></h4>
+     <% end %>
   <%end%>
 
 <a href="/formation/<%=@formation.id%>/edit">Edit Formation</a>
+
