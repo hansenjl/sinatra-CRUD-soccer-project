@@ -37,6 +37,16 @@ class PlayerController < ApplicationController
     end
   end
 
+  get "/player/:id/delete" do
+    if is_logged_in?
+      @player = Player.find(params[:id])
+      @player.delete
+      redirect "/teams/#{@current_team.id}"
+    else
+      redirect "/"
+    end
+  end
+
   patch "/player/:id" do
     if is_logged_in?
       @player = Player.find(params[:id])

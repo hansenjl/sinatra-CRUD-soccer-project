@@ -3,3 +3,6 @@
 <h3>Team: <a href="/teams/<%=@player.team.id%>"><%=@player.team.name%></a></h3>
 <h4>Position: <%if !@player.position.nil?%>
 <a href="/formation/<%=@player.position.formation.id%>"><%=@player.position.name%></a><%end%></h4>
+
+<a href="/player/<%=@player.id%>/edit">Edit Player</a>
+<a href="/player/<%=@player.id%>/delete">Delete Player</a>
