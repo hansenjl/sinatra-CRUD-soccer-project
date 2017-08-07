@@ -62,8 +62,12 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/teams/:id' do
-    @team = Team.find(params[:id])
-    erb :'team/show'
+    if is_logged_in?
+      @team = Team.find(params[:id])
+      erb :'team/show'
+    else
+      redirect '/'
+    end
   end
 
 
