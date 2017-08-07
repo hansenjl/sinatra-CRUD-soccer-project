@@ -8,6 +8,17 @@ class PlayerController < ApplicationController
     end
   end
 
+  post '/player' do
+    if is_logged_in?
+      @player = Player.create(:name => params[:name], :number => :number)
+      @current_team.players << @player
+      @current_team.save
+      redirect "player/#{@player.id}"
+    else
+      redirect "/"
+    end
+  end
+
   get "/player/:id" do
     if is_logged_in?
       @player = Player.find(params[:id])
