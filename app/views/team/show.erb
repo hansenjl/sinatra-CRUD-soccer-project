@@ -1,7 +1,7 @@
 <h1><%=@team.name%></h1>
 <ul>
   <% @team.players.each do |player| %>
-  <li><%= player.name %> #<%= player.number %></li>
+  <li><a href="/player/<%=player.id%>"><%= player.name %></a> #<%= player.number %></li>
   <% end %>
 </ul>
 
@@ -10,3 +10,4 @@
 <%else%>
 <a class="button" href="/formation/<%=@team.formation.id%>">View Formation</a>
 <%end%>
+

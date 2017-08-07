@@ -4,10 +4,10 @@
   <title>Soccer Team Creator</title>
 </head>
 <body>
-  <h1><%=@current_team.name%></h1>
   <% if @current_team.nil?%>
   <a href="/login">Log In</a>
   <% else%>
+  <h1><%=@current_team.name%></h1>
   <a href="/logout">Log Out</a>
   <% end %>
 
