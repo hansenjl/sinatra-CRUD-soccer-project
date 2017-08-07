@@ -1,1 +1,4 @@
 <h2><%=@player.name%> #<%=@player.number%></h2>
+
+<h3>Team: </h3><a href="/teams/<%=@player.team.id%>"><%=@player.team.name%></a>
+<h4>Position:</h4><a href="/formation/<%=@player.position.formation.id%>"><%=@player.position.name%></a>
