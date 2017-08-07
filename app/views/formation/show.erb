@@ -1,16 +1,7 @@
-<h1><%=@formation.name%> formation</h1>
-<form method="post" action="/formation/<%=@formation.id%>">
+<h2><%=@formation.name%> formation</h2>
+
 
   <% @formation.positions.each do |position| %>
-    <% if position.player.nil?%>
-      <label><%= position.name%>: </label><input type="text" name="positions[]" > <br></br>
-    <% else %>
-      <label><%= position.name%>: </label><input type="text" name="positions[]" value="<%= position.player.name%>"> <br></br>
-    <% end %>
-
+      <h4><%= position.name%>: <%= position.player.name%> </h4>
   <%end%>
 
-
-  <input type="submit" value="save">
-
-</form>
