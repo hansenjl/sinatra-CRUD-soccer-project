@@ -50,6 +50,8 @@ class PlayerController < ApplicationController
   patch "/player/:id" do
     if is_logged_in?
       @player = Player.find(params[:id])
+      @player.update(:name => params[:name], :number => params[:number])
+      @player.save
       redirect "/player/#{@player.id}"
     else
       redirect "/"
