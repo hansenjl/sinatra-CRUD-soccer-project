@@ -6,15 +6,24 @@
 </head>
 <body>
   <header class="border">
-    <% if @current_team.nil?%>
-    <a class="button" href="/login">Log In</a>
-    <% else%>
-    <h1 class="title"><%=@current_team.name%></h1>
-    <a class="button" href="/logout">Log Out</a>
-    <% end %>
+    <h1><a href="/">Soccer Team Creator Home</a></h1>
+    <nav>
+      <ul>
+        <% if @current_team.nil?%>
+        <li><a class="button" href="/login">Log In</a></li>
+        <% else%>
+        <li><a class="button" href="/logout">Log Out</a></li>
+        <li><a href="/teams/<%= @current_team.id %>">Team Page</a></li>
+        <% end %>
+        <li><a href="/formation/new">New Formation</a></li>
+        <li><a href="/player/new">New Player</a></li>
+      </ul>
+    </nav>
   </header>
 
-<%= yield %>
+<main>
+  <%= yield %>
+</main>
 
 </body>
 </html>
