@@ -62,6 +62,7 @@ class FormationController < ApplicationController
   get "/formation/:id/edit" do
     if is_logged_in?
       @formation = Formation.find(params[:id])
+      @players = @current_team.players
       erb :'formation/edit'
     else
       redirect '/'

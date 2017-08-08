@@ -1,16 +1,21 @@
-
 <h1>Edit your <%=@formation.name%> formation</h1>
 <form method="post" action="/formation/<%=@formation.id%>">
 
   <% @formation.positions.each do |position| %>
-    <% if position.player.nil?%>
-      <label><%= position.name%>: </label><input type="text" name="positions[]" > <br></br>
-    <% else %>
-      <label><%= position.name%>: </label><input type="text" name="positions[]" value="<%= position.player.name%>"> <br></br>
-    <% end %>
+  <label><%= position.name %>:</label>
+    <select name="<%=position.name%>">
+      <option></option>
+
+      <% @players.each do |player|%>
+        <% if position.player == player%>
+          <option name="player" value="<%=player.name%>" selected> <%= player.name %></option>
+        <% else %>
+          <option name="player" value="<%=player.name%>"> <%= player.name %></option>
+        <% end %>
+      <% end %>
+    </select><br></br>
 
   <%end%>
-
 
   <input type="submit" value="save">
 
