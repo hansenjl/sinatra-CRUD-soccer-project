@@ -70,6 +70,26 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  get '/teams/:id/edit' do
+    if is_logged_in?
+      @team = Team.find(params[:id])
+      erb :'team/edit'
+    else
+      redirect '/'
+    end
+  end
+
+  patch '/teams/:id' do
+    if is_logged_in?
+      team = Team.find(params[:id])
+      team.update(:name => params[:name])
+      team.save
+      redirect "/teams/#{team.id}"
+    else
+      redirect '/'
+    end
+  end
+
 
   helpers do
     def current_team

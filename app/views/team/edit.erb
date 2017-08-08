@@ -1,0 +1,7 @@
+<h2>Edit Team</h2>
+<form method="post" action="/team/<%=@team.id%>">
+  <input type="hidden" name="_method" id="hidden" value="patch">
+  <label>Team Name:</label><input type="text" name="name" value="<%=@team.name%>">
+  <input type="submit" value="Save">
+
+</form>
