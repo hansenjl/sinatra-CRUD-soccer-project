@@ -1,6 +1,6 @@
 <h1>Edit your <%=@formation.name%> formation</h1>
 <form method="post" action="/formation/<%=@formation.id%>">
-
+  <input type="hidden" name="_method" id="hidden" value="patch">
   <% @formation.positions.each do |position| %>
   <label><%= position.name %>:</label>
     <select name="<%=position.name%>">

@@ -72,6 +72,10 @@ class FormationController < ApplicationController
   patch "/formation/:id" do
     if is_logged_in?
       @formation = Formation.find(params[:id])
+      @formation.positions.each do |position|
+        position.player = Player.find_by(:name => params["#{position.name}"])
+        position.save
+
       redirect "/formation/#{@formation.id}"
     else
       redirect '/'
