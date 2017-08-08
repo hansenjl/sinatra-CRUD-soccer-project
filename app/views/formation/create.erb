@@ -2,7 +2,15 @@
 <form method="post" action="/formation/<%=@formation.id%>">
 
   <% @formation.positions.each do |position| %>
-  <input type="text" name="positions[]" value="<%= position.name %>"> <br>
+  <label><%= position.name %>:</label>
+  <select name="<%=position.name%>">
+    <option></option>
+    <% @players.each do |player|%>
+
+    <option name="player" value="<%=player.name%>"> <%= player.name %></option>
+    <% end %>
+  </select><br></br>
+
   <%end%>
 
 
