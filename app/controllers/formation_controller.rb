@@ -49,7 +49,11 @@ class FormationController < ApplicationController
   post "/formation/:id" do
     if is_logged_in?
       @formation = Formation.find(params[:id])
-      binding.pry
+      @formation.positions.each do |position|
+        position.player = Player.find_by(:name => params["#{position.name}"])
+        binding.pry
+      end
+
     else
       redirect '/'
     end
