@@ -51,9 +51,9 @@ class FormationController < ApplicationController
       @formation = Formation.find(params[:id])
       @formation.positions.each do |position|
         position.player = Player.find_by(:name => params["#{position.name}"])
-        binding.pry
+        position.save
       end
-
+      redirect "/formation/#{@formation.id}"
     else
       redirect '/'
     end
