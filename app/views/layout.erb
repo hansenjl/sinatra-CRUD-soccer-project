@@ -2,13 +2,14 @@
 <html>
 <head>
   <title>Soccer Team Creator</title>
+  <link href="<%= url('/public/style.css') %>" rel="stylesheet" type="text/css" />
 </head>
 <body>
   <% if @current_team.nil?%>
-  <a href="/login">Log In</a>
+  <a class="button" href="/login">Log In</a>
   <% else%>
   <h1><%=@current_team.name%></h1>
-  <a href="/logout">Log Out</a>
+  <a class="button" href="/logout">Log Out</a>
   <% end %>
 
 <%= yield %>
