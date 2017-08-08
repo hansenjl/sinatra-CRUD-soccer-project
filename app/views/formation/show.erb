@@ -5,7 +5,7 @@
     <% if position.player.nil?%>
       <h4><%= position.name%>: </h4>
     <% else %>
-      <h4><%= position.name%>: <%= position.player.name%></h4>
+      <h4><%= position.name%>: <a href="/player/<%=position.player.id%>"><%= position.player.name%></a></h4>
      <% end %>
   <%end%>
 

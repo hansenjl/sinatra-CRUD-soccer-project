@@ -75,7 +75,7 @@ class FormationController < ApplicationController
       @formation.positions.each do |position|
         position.player = Player.find_by(:name => params["#{position.name}"])
         position.save
-
+      end
       redirect "/formation/#{@formation.id}"
     else
       redirect '/'
