@@ -5,12 +5,14 @@
   <link href="/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-  <% if @current_team.nil?%>
-  <a class="button" href="/login">Log In</a>
-  <% else%>
-  <h1><%=@current_team.name%></h1>
-  <a class="button" href="/logout">Log Out</a>
-  <% end %>
+  <header class="border">
+    <% if @current_team.nil?%>
+    <a class="button" href="/login">Log In</a>
+    <% else%>
+    <h1 class="title"><%=@current_team.name%></h1>
+    <a class="button" href="/logout">Log Out</a>
+    <% end %>
+  </header>
 
 <%= yield %>
 

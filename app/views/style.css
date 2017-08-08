@@ -1,5 +1,10 @@
-.class{
+.border{
   font-size: 5em;
+  background:rgb(0,199,78)
+}
+
+.title{
+  float:left
 }
 
 h1{
@@ -12,4 +17,16 @@ html, body {
   height: 100%;
   width: 100%;
   background-color: hsl(160, 66%, 60%);
+}
+
+.button {
+  font: bold 11px Arial;
+  text-decoration: none;
+  background-color: #EEEEEE;
+  color: #333333;
+  padding: 2px 6px 2px 6px;
+  border-top: 1px solid #CCCCCC;
+  border-right: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #CCCCCC;
 }
