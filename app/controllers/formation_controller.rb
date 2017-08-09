@@ -46,7 +46,7 @@ class FormationController < ApplicationController
 
   get "/formation/:id/create" do
     if is_logged_in?
-      @formation = Formation.find(params[:id])
+      @formation = @current_team.formation
       @players = @current_team.players
       erb :'formation/create'
     else
@@ -57,7 +57,7 @@ class FormationController < ApplicationController
   post "/formation/:id" do
     if is_logged_in?
       players = []
-      @formation = Formation.find(params[:id])
+      @formation = @current_team.formation
       @formation.positions.each do |position|
         player = @current_team.players.find_by(:name => params["#{position.name}"])
         position.player = player
@@ -77,7 +77,7 @@ class FormationController < ApplicationController
 
   get "/formation/:id/edit" do
     if is_logged_in?
-      @formation = Formation.find(params[:id])
+      @formation = @current_team.formation
       @players = @current_team.players
       erb :'formation/edit'
     else
@@ -87,7 +87,7 @@ class FormationController < ApplicationController
 
   patch "/formation/:id" do
     if is_logged_in?
-      @formation = Formation.find(params[:id])
+      @formation = @current_team.formation
       players = []
       @formation.positions.each do |position|
         player = @current_team.players.find_by(:name => params["#{position.name}"])
