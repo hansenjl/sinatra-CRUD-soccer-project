@@ -1,3 +1,4 @@
+
 <h1>Edit your <%=@formation.name%> formation</h1>
 <form method="post" action="/formation/<%=@formation.id%>">
   <input type="hidden" name="_method" id="hidden" value="patch">
@@ -5,8 +6,8 @@
   <label><%= position.name %>:</label>
     <select name="<%=position.name%>">
       <option></option>
-
       <% @players.each do |player|%>
+
         <% if position.player == player%>
           <option name="player" value="<%=player.name%>" selected> <%= player.name %></option>
         <% else %>

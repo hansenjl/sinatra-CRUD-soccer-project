@@ -59,7 +59,7 @@ class FormationController < ApplicationController
       players = []
       @formation = Formation.find(params[:id])
       @formation.positions.each do |position|
-        player = Player.find_by(:name => params["#{position.name}"])
+        player = @current_team.players.find_by(:name => params["#{position.name}"])
         position.player = player
         player.position = position
         position.save
@@ -90,7 +90,7 @@ class FormationController < ApplicationController
       @formation = Formation.find(params[:id])
       players = []
       @formation.positions.each do |position|
-        player = Player.find_by(:name => params["#{position.name}"])
+        player = @current_team.players.find_by(:name => params["#{position.name}"])
         position.player = player
         position.save
         player.save
