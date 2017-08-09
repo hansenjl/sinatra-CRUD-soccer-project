@@ -3,8 +3,12 @@ class FormationController < ApplicationController
 
   get '/formation/new' do
     if is_logged_in?
-      @formations = Formation.all
-      erb :'formation/new'
+      if @current_team.players.count > 11
+        @formations = Formation.all
+        erb :'formation/new'
+      else
+        redirect '/formation/error'
+      end
     else
       redirect '/'
     end
