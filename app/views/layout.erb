@@ -6,19 +6,20 @@
 </head>
 <body>
   <header class="border">
-    <h1><a href="/">Soccer Team Creator Home</a></h1>
     <nav>
       <ul>
+        <li><a class="button" href="/">Home</a></li>
         <% if @current_team.nil?%>
         <li><a class="button" href="/login">Log In</a></li>
         <% else%>
         <li><a class="button" href="/logout">Log Out</a></li>
-        <li><a href="/teams/<%= @current_team.id %>">Team Page</a></li>
+        <li><a class="button"> href="/teams/<%= @current_team.id %>">Team Page</a></li>
         <% end %>
-        <li><a href="/formation/new">New Formation</a></li>
-        <li><a href="/player/new">New Player</a></li>
+        <li><a class="button" href="/formation/new">New Formation</a></li>
+        <li><a class="button" href="/player/new">New Player</a></li>
       </ul>
     </nav>
+    <h1>Soccer Team Creator</h1>
   </header>
 
 <main>

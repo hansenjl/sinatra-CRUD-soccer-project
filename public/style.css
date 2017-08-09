@@ -1,5 +1,5 @@
 .border{
-  font-size: 5em;
+  font-size: 1em;
   background:rgb(0,199,78)
 }
 
@@ -8,7 +8,7 @@
 }
 
 h1{
-  color:red;
+  color:rgb(34,103,245);
   background-color: hsl(160, 66%, 60%);
   font: bold 11px Arial;
 }
@@ -42,7 +42,7 @@ main {
 
 /* Lists */
 
-main ul { margin: 0 auto 1.5rem; }
+main ul { margin: 0 auto 1rem; }
 
 main ul li {
   list-style: none;
