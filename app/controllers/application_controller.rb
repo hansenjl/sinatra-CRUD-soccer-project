@@ -1,5 +1,7 @@
 require './config/environment'
 require 'pry'
+require 'sinatra/base'
+require 'rack-flash'
 class ApplicationController < Sinatra::Base
 
   configure do
@@ -7,10 +9,16 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
     enable :sessions
     set :session_secret, "password_security"
+
+    use Rack::Flash
   end
 
   get '/' do
-    erb :index
+    if is_logged_in?
+      redirect "/teams/#{@current_team.id}"
+    else
+      erb :index
+    end
   end
 
   get '/signup' do
@@ -45,6 +53,7 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/login' do
+
     @team = Team.find_by(name: params[:name])
 
     if @team && @team.authenticate(params[:password])

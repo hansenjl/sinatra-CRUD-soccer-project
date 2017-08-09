@@ -10,10 +10,15 @@ class PlayerController < ApplicationController
 
   post '/player' do
     if is_logged_in?
-      @player = Player.create!(:name => params[:name], :number => params[:number])
-      @current_team.players << @player
-      @current_team.save
-      redirect "player/#{@player.id}"
+      if !@current_team.players.find_by(:number => params[:number]).nil?
+        flash[:message] = "Unable to add player because the number #{params[:number]} is already taken. Choose a different number and try again."
+        erb :"/player/new"
+      else
+        @player = Player.create!(:name => params[:name], :number => params[:number])
+        @current_team.players << @player
+        @current_team.save
+        redirect "player/#{@player.id}"
+      end
     else
       redirect "/"
     end

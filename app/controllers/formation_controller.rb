@@ -108,7 +108,7 @@ class FormationController < ApplicationController
     def default_4_3_3(formation)
 
       formation.positions << Position.create(:name => "Left Forward",:formation_id => formation.id)
-      formation.positions << Position.create(:name => "center Forward",:formation_id => formation.id)
+      formation.positions << Position.create(:name => "Center Forward",:formation_id => formation.id)
       formation.positions << Position.create(:name => "Right Forward",:formation_id => formation.id)
       formation.positions << Position.create(:name => "Left Mid",:formation_id => formation.id)
       formation.positions << Position.create(:name => "Center Mid",:formation_id => formation.id)
