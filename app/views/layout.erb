@@ -5,7 +5,7 @@
   <link href="/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-  <header class="border">
+    <h1 class="header">Soccer Lineup Pro</h1>
     <nav>
       <ul>
         <li><a class="button" href="/">Home</a></li>
@@ -13,14 +13,12 @@
         <li><a class="button" href="/login">Log In</a></li>
         <% else%>
         <li><a class="button" href="/logout">Log Out</a></li>
-        <li><a class="button"> href="/teams/<%= @current_team.id %>">Team Page</a></li>
+        <li><a class="button" href="/teams/<%= @current_team.id %>">Team Page</a></li>
         <% end %>
         <li><a class="button" href="/formation/new">New Formation</a></li>
         <li><a class="button" href="/player/new">New Player</a></li>
       </ul>
     </nav>
-    <h1>Soccer Team Creator</h1>
-  </header>
 
 <main>
   <%= yield %>

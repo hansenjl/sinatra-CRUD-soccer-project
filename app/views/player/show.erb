@@ -4,6 +4,6 @@
 <h4>Position: <%if !@player.position.nil?%>
 <a href="/formation/<%=@player.position.formation.id%>"><%=@player.position.name%></a><%end%></h4>
 
-<a href="/player/<%=@player.id%>/edit">Edit Player</a>
-<a href="/player/<%=@player.id%>/delete">Delete Player</a>
-<a href="/player/new">Create a New Player</a>
+<a class="button" href="/player/<%=@player.id%>/edit">Edit Player</a>
+<a class="button" href="/player/<%=@player.id%>/delete">Delete Player</a>
+<a class="button" href="/player/new">Create a New Player</a>
