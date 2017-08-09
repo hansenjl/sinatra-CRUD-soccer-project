@@ -56,10 +56,18 @@ class FormationController < ApplicationController
 
   post "/formation/:id" do
     if is_logged_in?
+      players = []
       @formation = Formation.find(params[:id])
       @formation.positions.each do |position|
-        position.player = Player.find_by(:name => params["#{position.name}"])
+        player = Player.find_by(:name => params["#{position.name}"])
+        position.player = player
+        player.position = position
         position.save
+        player.save
+        players << player
+      end
+      if players.uniq.count < 11
+        flash[:message] = "Your formation is not complete. Be sure to use each player only once."
       end
       redirect "/formation/#{@formation.id}"
     else
@@ -80,9 +88,16 @@ class FormationController < ApplicationController
   patch "/formation/:id" do
     if is_logged_in?
       @formation = Formation.find(params[:id])
+      players = []
       @formation.positions.each do |position|
-        position.player = Player.find_by(:name => params["#{position.name}"])
+        player = Player.find_by(:name => params["#{position.name}"])
+        position.player = player
         position.save
+        player.save
+        players << player
+      end
+      if players.uniq.count < 11
+        flash[:message] = "Your formation is not complete. Be sure to use each player only once."
       end
       redirect "/formation/#{@formation.id}"
     else

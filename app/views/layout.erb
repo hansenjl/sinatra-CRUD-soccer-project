@@ -15,7 +15,11 @@
         <li><a class="button" href="/logout">Log Out</a></li>
         <li><a class="button" href="/teams/<%= @current_team.id %>">Team Page</a></li>
         <% end %>
+        <% if @current_team.formation.nil? %>
         <li><a class="button" href="/formation/new">New Formation</a></li>
+        <% else %>
+        <li><a class="button" href="/formation/<%=@current_team.formation.id%>">View Formation</a></li>
+        <% end %>
         <li><a class="button" href="/player/new">New Player</a></li>
       </ul>
     </nav>

@@ -1,5 +1,7 @@
 <h2><%=@formation.name%> Formation</h2>
-
+  <% if flash.has?(:message) %>
+  <h3><%= flash[:message] %></h3>
+  <% end %>
 
   <% @formation.positions.each do |position| %>
     <% if position.player.nil?%>
