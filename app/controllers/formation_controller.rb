@@ -12,19 +12,23 @@ class FormationController < ApplicationController
 
 
   post '/formation' do
-    case params[:formation]
-    when "4-4-2"
-      @formation = Formation.new(:name => "4-4-2")
-      default_4_4_2(@formation)
-    when "4-3-3"
-      @formation = Formation.new(:name => "4-3-3")
-      default_4_3_3(@formation)
+    if is_logged_in?
+      case params[:formation]
+      when "4-4-2"
+        @formation = Formation.new(:name => "4-4-2")
+        default_4_4_2(@formation)
+      when "4-3-3"
+        @formation = Formation.new(:name => "4-3-3")
+        default_4_3_3(@formation)
+      else
+        redirect '/formation/new'
+      end
+      @formation.teams << @current_team
+      @formation.save
+      redirect "/formation/#{@formation.id}/create"
     else
-      redirect '/formation/new'
+      redirect '/'
     end
-    @formation.teams << @current_team
-    @formation.save
-    redirect "/formation/#{@formation.id}/create"
   end
 
   get "/formation/:id" do
