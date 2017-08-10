@@ -7,7 +7,7 @@ On the main page, you must sign up or log in to access the other pages. Once you
 
 ---
 ### New Player
-In order to create a formation, you must first have 11 players. Start by adding new players to your team.
+In order to create a formation, you must first have 11 players. Start by adding new players to your team. You must enter both a name and a number for each player.
 
 ---
 ### Playing a Game

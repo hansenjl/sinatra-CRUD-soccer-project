@@ -1,8 +1,8 @@
 <h2><%=@player.name%> #<%=@player.number%></h2>
 
-<h3>Team: <a href="/teams/<%=@player.team.id%>"><%=@player.team.name%></a></h3>
+<h4>Team: <a href="/teams/<%=@player.team.id%>"><%=@player.team.name%></a></h4>
 <h4>Position: <%if !@player.position.nil?%>
-<a href="/formation/<%=@player.position.formation.id%>"><%=@player.position.name%></a><%end%></h4>
+  <%=@player.position.name%><%end%></h4>
 
 <a class="button" href="/player/<%=@player.id%>/edit">Edit Player</a>
 <a class="button" href="/player/<%=@player.id%>/delete">Delete Player</a>

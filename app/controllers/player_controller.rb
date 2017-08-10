@@ -13,11 +13,14 @@ class PlayerController < ApplicationController
       if !@current_team.players.find_by(:number => params[:number]).nil?
         flash[:message] = "Unable to add player because the number #{params[:number]} is already taken. Choose a different number and try again."
         erb :"/player/new"
-      else
+      elsif !params[:name].empty? && !params[:number].empty?
         @player = Player.create!(:name => params[:name], :number => params[:number])
         @current_team.players << @player
         @current_team.save
         redirect "player/#{@player.id}"
+      else
+         flash[:message] = "A new player must have both a name and a number"
+        erb :"/player/new"
       end
     else
       redirect "/"
