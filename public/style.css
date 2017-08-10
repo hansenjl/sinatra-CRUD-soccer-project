@@ -23,19 +23,16 @@ h3 {
 .left {
   position: absolute;
   left: 100px;
-  color: red;
 }
 
 .right{
   position: absolute;
   left: 900px;
-  color: red;
 }
 
 .center{
   position: absolute;
   left: 500px;
-  color: red;
 }
 
 .forward {

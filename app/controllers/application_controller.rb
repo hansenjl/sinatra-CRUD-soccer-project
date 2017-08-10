@@ -35,7 +35,8 @@ class ApplicationController < Sinatra::Base
       session[:user_id] = @team.id
       redirect "/teams/#{@team.id}"
     else
-      redirect '/failure'
+      flash[:message] = "Oops! It looks like your sign up attempt has failed. Please try again."
+      erb :signup
     end
   end
 

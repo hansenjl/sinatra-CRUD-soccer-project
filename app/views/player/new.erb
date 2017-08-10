@@ -1,6 +1,7 @@
 <h2>Add a New Player</h2>
 <% if flash.has?(:message) %>
   <h3><%= flash[:message] %></h3>
+   <% flash[:message].clear %>
 <% end %>
 <form method="post" action="/player">
   <label>Player Name:</label><input type="text" name="name">

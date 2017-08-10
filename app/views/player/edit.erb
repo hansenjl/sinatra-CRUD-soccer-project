@@ -1,6 +1,7 @@
 <h2>Edit Player</h2>
   <% if flash.has?(:message) %>
   <h3><%= flash[:message] %></h3>
+   <% flash[:message].clear %>
   <% end %>
 <form method="post" action="/player/<%=@player.id%>">
   <input type="hidden" name="_method" id="hidden" value="patch">
