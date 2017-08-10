@@ -19,6 +19,83 @@ h3 {
   color:white;
 }
 
+
+.left {
+  position: absolute;
+  left: 100px;
+  color: red;
+}
+
+.right{
+  position: absolute;
+  left: 900px;
+  color: red;
+}
+
+.center{
+  position: absolute;
+  left: 500px;
+  color: red;
+}
+
+.forward {
+  position: absolute;
+  top: 200px;
+}
+
+.mid {
+  position: absolute;
+  top: 300px;
+}
+
+.defending {
+  position: absolute;
+  top: 325px;
+  left: 500px;
+}
+
+.attacking {
+  position: absolute;
+  top: 250px;
+  left: 500px;
+}
+
+.defender {
+  position: absolute;
+  top: 400px;
+}
+
+.sweeper {
+  position: absolute;
+  left: 500px;
+  top: 475px;
+}
+
+.stopper {
+  position: absolute;
+  left: 500px;
+  top: 400px;
+}
+
+.goalie {
+  position: absolute;
+  left: 500px;
+  top: 550px;
+}
+
+
+.wrapper {
+  border:1px solid #666;
+}
+
+/*{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+}*/
+
+
+
 html, body {
   padding: 0;
   margin: 0;
@@ -49,7 +126,9 @@ main {
 
 /* Lists */
 
-main ul { margin: 0 auto 1rem; }
+main ul {
+  margin: 0 auto 1rem;
+}
 
 main ul li {
   margin: 0.5rem 0 1rem;
