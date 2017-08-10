@@ -30,13 +30,18 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/signup' do
-    @team = Team.new(:name => params[:name], :password => params[:password])
-    if @team.save && !params[:name].empty?
-      session[:user_id] = @team.id
-      redirect "/teams/#{@team.id}"
+    if !Team.find_by(:name => params[:name]).nil?
+      flash[:message] = "Oops! That team name is already taken. Please try again."
+        erb :signup
     else
-      flash[:message] = "Oops! It looks like your sign up attempt has failed. Please try again."
-      erb :signup
+      @team = Team.new(:name => params[:name], :password => params[:password])
+      if @team.save && !params[:name].empty?
+        session[:user_id] = @team.id
+        redirect "/teams/#{@team.id}"
+      else
+        flash[:message] = "Oops! It looks like your sign up attempt has failed. Please try again."
+        erb :signup
+      end
     end
   end
 
