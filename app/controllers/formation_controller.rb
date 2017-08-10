@@ -14,6 +14,14 @@ class FormationController < ApplicationController
     end
   end
 
+  get '/formation/error' do
+    if is_logged_in?
+      erb :'formation/error'
+    else
+        redirect '/'
+    end
+  end
+
 
   post '/formation' do
     if is_logged_in?
