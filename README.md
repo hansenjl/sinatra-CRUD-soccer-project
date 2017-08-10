@@ -10,20 +10,14 @@ On the main page, you must sign up or log in to access the other pages. Once you
 In order to create a formation, you must first have 11 players. Start by adding new players to your team. You must enter both a name and a number for each player. You can always edit or delete a player.
 
 ---
-### Playing a Game
-On a Game screen, the game board will be displayed, along with the game's status and links to the players' profile pages.
-Players of the game will also have the option to forfeit the game or place a token if it's their turn.
-
-In a game against the computer, the page will automatically refresh when the computer has made its move. In a game against another player, the page must be refreshed manually to see if the opponent has made their move.
+### Home
+The home button will show you the team page. It lists all of the players currently on your team.
 
 ---
-### Profile Pages
-Displayed on a user's profile page is a grid of board previews linking to their ongoing games, along with their game performance history (number of games won and lost against previous opponents, and an overal win&tie/loss ratio).
-
-On a user's own profile page, they will also see a list of sent and received game invites, with the option to delete sent invites or ignore received invites (the sender will remain unaware).
+### New Formation
+Once your team has 11 players, you can create a new formation.At present, each team can only have one formation but this could be expanded in later versions. Choose one player for each position and make sure you do not use a player more than once. You may edit a formation once you have created it. The only way to change a player's position is to change the formation.
 
 ---
-
 ## Installation
 To use the application locally, clone the repo and run `bundle install` from the game directory. Then run `rake db:migrate` to load the databases. Then, run `shotgun` and navigate to `localhost:9393` in your browser.
 
