@@ -52,7 +52,6 @@ main {
 main ul { margin: 0 auto 1rem; }
 
 main ul li {
-  list-style: none;
   margin: 0.5rem 0 1rem;
   font-size: 1.25rem;
 }
