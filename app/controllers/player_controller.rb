@@ -59,7 +59,6 @@ class PlayerController < ApplicationController
     if is_logged_in?
       @player = @current_team.players.find(params[:id])
       if !@current_team.players.find_by(:number => params[:number]).nil? && @player.number != params[:number].to_i
-        binding.pry
         flash[:message] = "Unable to edit player because the number #{params[:number]} is already taken. Choose a different number and try again."
         erb :"/player/edit"
       else

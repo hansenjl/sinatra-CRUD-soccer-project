@@ -3,7 +3,7 @@ class FormationController < ApplicationController
 
   get '/formation/new' do
     if is_logged_in?
-      if @current_team.players.count > 11
+      if @current_team.players.count >= 11
         @formations = Formation.all
         erb :'formation/new'
       else
@@ -67,12 +67,14 @@ class FormationController < ApplicationController
       players = []
       @formation = @current_team.formation
       @formation.positions.each do |position|
-        player = @current_team.players.find_by(:name => params["#{position.name}"])
-        position.player = player
-        player.position = position
-        position.save
-        player.save
-        players << player
+        if !@current_team.players.find_by(:name => params["#{position.name}"]).nil?
+          player = @current_team.players.find_by(:name => params["#{position.name}"])
+          position.player = player
+          player.position = position
+          position.save
+          player.save
+          players << player
+        end
       end
       if players.uniq.count < 11
         flash[:message] = "Your formation is not complete. Be sure to use each player only once."
@@ -98,11 +100,13 @@ class FormationController < ApplicationController
       @formation = @current_team.formation
       players = []
       @formation.positions.each do |position|
-        player = @current_team.players.find_by(:name => params["#{position.name}"])
-        position.player = player
-        position.save
-        player.save
-        players << player
+        if !@current_team.players.find_by(:name => params["#{position.name}"]).nil?
+          player = @current_team.players.find_by(:name => params["#{position.name}"])
+          position.player = player
+          position.save
+          player.save
+          players << player
+        end
       end
       if players.uniq.count < 11
         flash[:message] = "Your formation is not complete. Be sure to use each player only once."

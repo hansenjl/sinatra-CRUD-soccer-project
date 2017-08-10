@@ -24,7 +24,7 @@ Specs:
 - [X] Display validation failures to user with error message (example form URL e.g. /posts/new)
       - Failure message will appear when there is a validation failure
 
-- [ ] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
+- [X] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
 
 Confirm
 - [X] You have a large number of small Git commits
