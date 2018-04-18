@@ -97,41 +97,30 @@ class FormationController < ApplicationController
 
   patch "/formation/:id" do
     if is_logged_in?
-      @formation = @current_team.formation
-      players = []
-      @formation.positions.each do |position|
-        if !@current_team.players.find_by(:name => params["#{position.name}"]).nil?
-          player = @current_team.players.find_by(:name => params["#{position.name}"])
-          position.player = player
-          position.save
-          player.save
-          players << player
-        end
-      end
-      if players.uniq.count < 11
+      if valid_player_count?(params[:positions])
+        current_team.update_team_formation(params[:positions])
+        redirect "/formation/#{@formation.id}"
+      else
         flash[:message] = "Your formation is not complete. Be sure to use each player only once."
+        erb :'formation/edit'
       end
-      redirect "/formation/#{@formation.id}"
     else
       redirect '/'
     end
   end
 
   helpers do
-    def default_4_4_2(formation)
-      formation.positions << Position.create(:name => "Left Forward",:formation_id => formation.id)
-      formation.positions << Position.create(:name => "Right Forward",:formation_id => formation.id)
-      formation.positions << Position.create(:name => "Attacking Mid",:formation_id => formation.id)
-      formation.positions << Position.create(:name => "Left Mid",:formation_id => formation.id)
-      formation.positions << Position.create(:name => "Defending Mid",:formation_id => formation.id)
-      formation.positions << Position.create(:name => "Right Mid",:formation_id => formation.id)
-      formation.positions << Position.create(:name => "Left Defender",:formation_id => formation.id)
-      formation.positions << Position.create(:name => "Stopper",:formation_id => formation.id)
-      formation.positions << Position.create(:name => "Right Defender",:formation_id => formation.id)
-     formation.positions <<  Position.create(:name => "Sweeper",:formation_id => formation.id)
-      formation.positions << Position.create(:name => "Goalie",:formation_id => formation.id)
-    end
 
+    def valid_player_count?(new_positions)
+      # iterate over hash and push names into new array
+      # check for unique names in array
+      # check if count of unique names in the array < 11
+      if new_postitions().uniq.count < 11
+      false
+    else
+      true
+    end
+    end
     def default_4_3_3(formation)
 
       formation.positions << Position.create(:name => "Left Forward",:formation_id => formation.id)

@@ -5,5 +5,8 @@
   <%=@player.position.name%><%end%></h4>
 
 <a class="button" href="/player/<%=@player.id%>/edit">Edit Player</a>
+<form action="/player/<%=@player.id%>" method="POST">
+  <input type="hidden"
+</form>
 <a class="button" href="/player/<%=@player.id%>/delete">Delete Player</a>
 <a class="button" href="/player/new">Create a New Player</a>

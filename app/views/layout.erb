@@ -9,13 +9,13 @@
     <nav>
       <ul>
         <li><a class="button" href="/">Home</a></li>
-        <% if @current_team.nil?%>
+        <% if current_team.nil?%>
           <li><a class="button" href="/login">Log In</a></li>
         <% else%>
-          <% if @current_team.formation.nil? %>
+          <% if current_team.formation.nil? %>
           <li><a class="button" href="/formation/new">New Formation</a></li>
           <% else %>
-          <li><a class="button" href="/formation/<%=@current_team.formation.id%>">View Formation</a></li>
+          <li><a class="button" href="/formation/<%=current_team.formation.id%>">View Formation</a></li>
           <% end %>
           <li><a class="button" href="/player/new">New Player</a></li>
           <li><a class="button" href="/logout">Log Out</a></li>

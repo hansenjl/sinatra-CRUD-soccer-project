@@ -108,7 +108,7 @@ class ApplicationController < Sinatra::Base
 
   helpers do
     def current_team
-      @current_team ||= Team.find_by(:id =>session[:user_id])
+      @current_team ||= Team.find_by(:id => session[:user_id]) if session[:user_id]
     end
 
     def is_logged_in?

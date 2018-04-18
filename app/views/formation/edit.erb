@@ -4,14 +4,14 @@
   <input type="hidden" name="_method" id="hidden" value="patch">
   <% @formation.positions.each do |position| %>
   <label><%= position.name %>:</label>
-    <select name="<%=position.name%>">
+    <select name="positions[<%=position.name%>]">
       <option></option>
       <% @players.each do |player|%>
 
         <% if position.player == player%>
-          <option name="player" value="<%=player.name%>" selected> <%= player.name %></option>
+          <option name="positions[player]" value="<%=player.name%>" selected> <%= player.name %></option>
         <% else %>
-          <option name="player" value="<%=player.name%>"> <%= player.name %></option>
+          <option name="positions[player]" value="<%=player.name%>"> <%= player.name %></option>
         <% end %>
       <% end %>
     </select><br></br>

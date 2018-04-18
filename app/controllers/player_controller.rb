@@ -10,13 +10,12 @@ class PlayerController < ApplicationController
 
   post '/player' do
     if is_logged_in?
-      if !@current_team.players.find_by(:number => params[:number]).nil?
+      if !current_team.players.find_by(:number => params[:number]).nil?
         flash[:message] = "Unable to add player because the number #{params[:number]} is already taken. Choose a different number and try again."
         erb :"/player/new"
       elsif !params[:name].empty? && !params[:number].empty?
-        @player = Player.create!(:name => params[:name], :number => params[:number])
-        @current_team.players << @player
-        @current_team.save
+        @player = current_team.players.build(:name => params[:name], :number => params[:number])
+        @player.save
         redirect "player/#{@player.id}"
       else
          flash[:message] = "A new player must have both a name and a number"
@@ -29,8 +28,11 @@ class PlayerController < ApplicationController
 
   get "/player/:id" do
     if is_logged_in?
-      @player = @current_team.players.find(params[:id])
-      erb :'player/show'
+      if @player = current_team.players.find_by(id: params[:id])
+        erb :'player/show'
+      else
+        redirect to "/teams/#{current_team.id}"
+      end
     else
       redirect "/"
     end
@@ -38,18 +40,21 @@ class PlayerController < ApplicationController
 
   get "/player/:id/edit" do
     if is_logged_in?
-      @player = @current_team.players.find(params[:id])
-      erb :'player/edit'
+      if @player = current_team.players.find_by(params[:id])
+        erb :'player/edit'
+      else
+        redirect to "/teams/#{current_team.id}"
+      end
     else
       redirect "/"
     end
   end
 
-  get "/player/:id/delete" do
+  delete "/player/:id" do
     if is_logged_in?
-      @player = @current_team.players.find(params[:id])
+      @player = current_team.players.find(params[:id])
       @player.delete
-      redirect "/teams/#{@current_team.id}"
+      redirect "/teams/#{current_team.id}"
     else
       redirect "/"
     end
@@ -57,8 +62,8 @@ class PlayerController < ApplicationController
 
   patch "/player/:id" do
     if is_logged_in?
-      @player = @current_team.players.find(params[:id])
-      if !@current_team.players.find_by(:number => params[:number]).nil? && @player.number != params[:number].to_i
+      @player = current_team.players.find(params[:id])
+      if !current_team.players.find_by(:number => params[:number]).nil? && @player.number != params[:number].to_i
         flash[:message] = "Unable to edit player because the number #{params[:number]} is already taken. Choose a different number and try again."
         erb :"/player/edit"
       else
