@@ -1,4 +1,7 @@
 require 'sinatra'
+
+require 'active_record'
+
 configure :development do
   ENV['SINATRA_ENV'] ||= "development"
 
