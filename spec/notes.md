@@ -1,5 +1,13 @@
+#Cheatsheet:
 https://gist.github.com/them0nk/2166525
+#Documentation:
 https://github.com/teamcapybara/capybara
+
+
+Examples:
+https://github.com/hansenjl/sinatra-fwitter-group-project-v-000/blob/master/spec/controllers/application_controller_spec.rb
+
+https://github.com/hansenjl/basic-sinatra-forms-lab-v-000/blob/master/spec/basic_sinatra_forms_spec.rb
 
 When a user visits '/'
   they should see "Welcome"

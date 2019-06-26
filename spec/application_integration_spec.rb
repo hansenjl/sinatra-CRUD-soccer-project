@@ -26,7 +26,7 @@ describe "Signup Page" do
     fill_in(:name, :with => "becky567")
     fill_in(:password, :with => "kittens")
     click_button 'Sign Up!'
-    print page
+    print page.html
     expect(page).to have_text("becky567")
   end
 end
