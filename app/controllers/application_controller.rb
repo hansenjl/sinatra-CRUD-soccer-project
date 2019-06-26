@@ -59,7 +59,6 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/login' do
-
     @team = Team.find_by(name: params[:name])
 
     if @team && @team.authenticate(params[:password])
@@ -77,32 +76,24 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/teams/:id' do
-    if is_logged_in?
-      @team = Team.find(params[:id])
-      erb :'team/show'
-    else
-      redirect '/'
-    end
+    redirect_if_not_logged_in
+    @team = Team.find(params[:id])
+    erb :'team/show'
   end
 
   get '/teams/:id/edit' do
-    if is_logged_in?
-      @team = Team.find(params[:id])
-      erb :'team/edit'
-    else
-      redirect '/'
-    end
+    redirect_if_not_logged_in
+    @team = Team.find(params[:id])
+    erb :'team/edit'
+
   end
 
   patch '/teams/:id' do
-    if is_logged_in?
-      team = Team.find(params[:id])
-      team.update(:name => params[:name])
-      team.save
-      redirect "/teams/#{team.id}"
-    else
-      redirect '/'
-    end
+    redirect_if_not_logged_in
+    team = Team.find(params[:id])
+    team.update(:name => params[:name])
+    team.save
+    redirect "/teams/#{team.id}"
   end
 
 
@@ -113,6 +104,12 @@ class ApplicationController < Sinatra::Base
 
     def is_logged_in?
       !!current_team
+    end
+
+    def redirect_if_not_logged_in
+      if !is_logged_in?
+        redirect "/"
+      end
     end
   end
 end

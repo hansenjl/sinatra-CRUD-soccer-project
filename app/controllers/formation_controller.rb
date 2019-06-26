@@ -2,110 +2,86 @@ require 'pry'
 class FormationController < ApplicationController
 
   get '/formation/new' do
-    if is_logged_in?
-      if @current_team.players.count >= 11
-        @formations = Formation.all
-        erb :'formation/new'
-      else
-        redirect '/formation/error'
-      end
+    redirect_if_not_logged_in
+    if @current_team.players.count >= 11
+      @formations = Formation.all
+      erb :'formation/new'
     else
-      redirect '/'
+      redirect '/formation/error'
     end
   end
 
   get '/formation/error' do
-    if is_logged_in?
-      erb :'formation/error'
-    else
-        redirect '/'
-    end
+    redirect_if_not_logged_in
+    erb :'formation/error'
   end
 
 
   post '/formation' do
-    if is_logged_in?
-      case params[:formation]
-      when "4-4-2"
-        @formation = Formation.new(:name => "4-4-2")
-        default_4_4_2(@formation)
-      when "4-3-3"
-        @formation = Formation.new(:name => "4-3-3")
-        default_4_3_3(@formation)
-      else
-        redirect '/formation/new'
-      end
-      @formation.teams << @current_team
-      @formation.save
-      redirect "/formation/#{@formation.id}/create"
+    redirect_if_not_logged_in
+    case params[:formation]
+    when "4-4-2"
+      @formation = Formation.new(:name => "4-4-2")
+      default_4_4_2(@formation)
+    when "4-3-3"
+      @formation = Formation.new(:name => "4-3-3")
+      default_4_3_3(@formation)
     else
-      redirect '/'
+      redirect '/formation/new'
     end
+    @formation.teams << @current_team
+    @formation.save
+    redirect "/formation/#{@formation.id}/create"
   end
 
   get "/formation/:id" do
-    if is_logged_in?
-      @formation = Formation.find(params[:id])
-      erb :'formation/show'
-    else
-      redirect '/'
-    end
+    redirect_if_not_logged_in
+    @formation = Formation.find(params[:id])
+    erb :'formation/show'
   end
 
   get "/formation/:id/create" do
-    if is_logged_in?
-      @formation = @current_team.formation
-      @players = @current_team.players
-      erb :'formation/create'
-    else
-      redirect '/'
-    end
+    redirect_if_not_logged_in
+    @formation = @current_team.formation
+    @players = @current_team.players
+    erb :'formation/create'
   end
 
   post "/formation/:id" do
-    if is_logged_in?
-      players = []
-      @formation = @current_team.formation
-      @formation.positions.each do |position|
-        if !@current_team.players.find_by(:name => params["#{position.name}"]).nil?
-          player = @current_team.players.find_by(:name => params["#{position.name}"])
-          position.player = player
-          player.position = position
-          position.save
-          player.save
-          players << player
-        end
+    redirect_if_not_logged_in
+    players = []
+    @formation = @current_team.formation
+    @formation.positions.each do |position|
+      if !@current_team.players.find_by(:name => params["#{position.name}"]).nil?
+        player = @current_team.players.find_by(:name => params["#{position.name}"])
+        position.player = player
+        player.position = position
+        position.save
+        player.save
+        players << player
       end
-      if players.uniq.count < 11
-        flash[:message] = "Your formation is not complete. Be sure to use each player only once."
-      end
-      redirect "/formation/#{@formation.id}"
-    else
-      redirect '/'
     end
+    if players.uniq.count < 11
+      flash[:message] = "Your formation is not complete. Be sure to use each player only once."
+    end
+    redirect "/formation/#{@formation.id}"
   end
 
   get "/formation/:id/edit" do
-    if is_logged_in?
-      @formation = @current_team.formation
-      @players = @current_team.players
-      erb :'formation/edit'
-    else
-      redirect '/'
-    end
+    redirect_if_not_logged_in
+    @formation = @current_team.formation
+    @players = @current_team.players
+    erb :'formation/edit'
   end
 
   patch "/formation/:id" do
-    if is_logged_in?
-      if valid_player_count?(params[:positions])
-        current_team.update_team_formation(params[:positions])
-        redirect "/formation/#{@formation.id}"
-      else
-        flash[:message] = "Your formation is not complete. Be sure to use each player only once."
-        erb :'formation/edit'
-      end
+    redirect_if_not_logged_in
+    if valid_player_count?(params[:positions])
+      current_team.update_team_formation(params[:positions])
+      redirect "/formation/#{@formation.id}"
     else
-      redirect '/'
+      flash[:message] = "Your formation is not complete. Be sure to use each player only once."
+      erb :'formation/edit'
     end
   end
 
